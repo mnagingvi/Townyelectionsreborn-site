@@ -33,7 +33,8 @@ There is no npm install step and no plugin jar in this repository. The **Get the
 ## What is in the site
 
 - `index.html` — page content and the interactive ballot preview
-- `styles.css` — responsive design and CSS-only Minecraft-inspired artwork
+- `styles.css` — responsive design and visual system
 - `script.js` — mobile navigation, ballot-method demo, and copy-command button
+- `assets/election-night-town.webp` — custom-optimized hero illustration
 - `favicon.svg` — site icon
 - `_headers` — basic security headers for Cloudflare Pages

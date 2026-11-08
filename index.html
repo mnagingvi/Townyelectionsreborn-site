@@ -16,6 +16,7 @@
     />
     <title>Towny Elections Reborn — Let your town have a say</title>
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preload" as="image" href="/assets/election-night-town.webp" fetchpriority="high" />
     <link rel="stylesheet" href="/styles.css" />
     <script src="/script.js" defer></script>
   </head>
@@ -76,7 +77,7 @@
       <section class="hero-section" aria-labelledby="hero-title">
         <div class="container hero-grid">
           <div class="hero-copy">
-            <p class="eyebrow"><span class="eyebrow-mark"></span> TOWNY SERVERS, MEET DEMOCRACY</p>
+            <p class="eyebrow"><span class="eyebrow-mark"></span> THE TOWN HALL IS OPEN</p>
             <h1 id="hero-title">Let the whole town <span>have a say.</span></h1>
             <p class="hero-description">
               A fresh take on elections for Minecraft. Give your residents a real
@@ -104,28 +105,11 @@
             </div>
           </div>
 
-          <div class="hero-art">
-            <div class="art-grid" aria-hidden="true"></div>
-            <div class="pixel-sun" aria-hidden="true"></div>
-            <div class="pixel-town" aria-hidden="true">
-              <span class="town-roof roof-one"></span>
-              <span class="town-building building-one"></span>
-              <span class="town-roof roof-two"></span>
-              <span class="town-building building-two"></span>
-              <span class="town-tower"></span>
-              <span class="town-building building-three"></span>
-              <span class="town-tree tree-one"></span>
-              <span class="town-tree tree-two"></span>
+          <div class="hero-art" role="group" aria-label="Interactive ballot preview for the town of Birchwood">
+            <div class="scene-chip" aria-hidden="true">
+              <span class="scene-chip-icon">✦</span>
+              <span><strong>BIRCHWOOD / 01</strong><small>THE VOTE IS IN</small></span>
             </div>
-            <div class="floating-note floating-note-top" aria-hidden="true">
-              <span class="note-icon">✦</span>
-              <span><strong>Election Night</strong><small>Coming in hot</small></span>
-            </div>
-            <div class="floating-note floating-note-bottom" aria-hidden="true">
-              <span class="online-indicator"></span>
-              <span><strong>32 residents</strong><small>have had their say</small></span>
-            </div>
-
             <div class="ballot-window">
               <div class="window-bar">
                 <span class="window-dots" aria-hidden="true"><i></i><i></i><i></i></span>
@@ -172,7 +156,7 @@
                 </div>
               </div>
             </div>
-            <p class="art-caption"><span></span> A town hall, reimagined.</p>
+            <p class="art-caption"><span>✦</span> BIRCHWOOD TOWN HALL <i>·</i> ELECTION NIGHT</p>
           </div>
         </div>
         <div class="container hero-bottom">
