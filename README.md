@@ -28,13 +28,14 @@ This is a static site, so Cloudflare Pages can deploy it directly from GitHub wi
 
 If you connected Cloudflare to this repository before the pull request is merged, choose the branch containing the site for a preview deployment, or change the **Production branch** to `main` after the merge.
 
-There is no npm install step and no plugin jar in this repository. The **Get the plugin** buttons link to the separate Minecraft plugin's GitHub releases page.
+There is no npm install step and no plugin jar in this repository. The **Download the plugin** buttons link to the separate Minecraft plugin's GitHub releases page.
 
 ## What is in the site
 
 - `index.html` — page content and the interactive ballot preview
 - `styles.css` — responsive design and visual system
 - `script.js` — mobile navigation, ballot-method demo, and copy-command button
-- `assets/election-night-town.webp` — custom-optimized hero illustration
 - `favicon.svg` — site icon
 - `_headers` — basic security headers for Cloudflare Pages
+
+The 3D hero is a CSS perspective treatment of the interactive ballot UI; there is no generated hero artwork or remote image dependency.
