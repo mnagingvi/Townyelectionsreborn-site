@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TownyElections Reborn — real elections for Towny servers</title>
+<meta name="description" content="A Paper 1.21.4+ plugin that adds real elections to Towny towns: candidacy, campaigns, political parties, ranked-choice ballots, and a staged election-night show. Rebuilt from an archived repo.">
+<meta property="og:title" content="TownyElections Reborn">
+<meta property="og:description" content="Real elections for Towny towns on Paper 1.21.4+: plurality, ranked choice, or approval voting, political parties, and an election-night show. Rebuilt from an archived repo.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#f5efe2">
+<link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="favicon-192.png">
+<link rel="stylesheet" href="assets/fonts/fonts.css">
+<link rel="stylesheet" href="styles.css">
+<script>document.documentElement.classList.add("js")</script>
+</head>
+<body id="top">
+<a class="skip-link" href="#main">skip to content</a>
+
+<header class="site-head">
+  <div class="container head-row">
+    <a class="wordmark" href="#top">
+      <img class="mark" src="logo.svg" alt="" width="30" height="30">
+      <span class="word">TownyElections</span>
+      <span class="stamp stamp-word" aria-hidden="true">reborn</span>
+    </a>
+    <nav class="site-nav" id="site-nav" aria-label="Site sections">
+      <a href="#story">story</a>
+      <a href="#features">features</a>
+      <a href="#night">election night</a>
+      <a href="#commands">commands</a>
+      <a href="#setup">setup</a>
+      <a class="gh" href="https://github.com/mnagingvi/TownyElections-2">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+        <span>GitHub</span>
+      </a>
+    </nav>
+    <button class="menu-btn" aria-expanded="false" aria-controls="site-nav">
+      <span class="menu-box" aria-hidden="true"></span>
+      <span class="menu-text">menu</span>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============================== hero ============================== -->
+  <section class="hero" aria-label="TownyElections Reborn">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <h1 class="hero-title">Hold real elections in your Minecraft town.</h1>
+        <p class="hero-lede">Candidacy, campaigns, ranked-choice ballots, and a proper election-night show, built for Towny.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://github.com/mnagingvi/TownyElections-2/releases">Download the plugin</a>
+          <a class="btn" href="#story">How it got reborn</a>
+        </div>
+        <p class="chip-row">
+          <span class="chip">paper 1.21.4+</span>
+          <span class="chip">java 21+</span>
+          <span class="chip">towny 0.100.0.0+</span>
+        </p>
+      </div>
+
+      <figure class="ballot" role="group" aria-label="Try a sample ballot">
+        <span class="stamp stamp-hero" aria-hidden="true">reborn</span>
+        <header class="ballot-head">
+          <p class="b-title"><img class="b-seal" src="logo.svg" alt="" width="20" height="20">Towny ballot</p>
+          <p class="b-town">town of Oakvale, mayoral election</p>
+        </header>
+        <div class="b-cut" aria-hidden="true"><span>cut along the dotted line</span></div>
+        <div class="b-modes" role="group" aria-label="Voting system">
+          <button class="mode" type="button" data-mode="plurality" aria-pressed="true">plurality</button>
+          <button class="mode" type="button" data-mode="ranked" aria-pressed="false">ranked choice</button>
+          <button class="mode" type="button" data-mode="approval" aria-pressed="false">approval</button>
+        </div>
+        <ul class="b-candidates">
+          <li>
+            <button class="cand" type="button" data-name="Alex" aria-label="Alex, Reform Coalition">
+              <span class="box" aria-hidden="true">
+                <svg class="mark-x" viewBox="0 0 32 32"><path fill="currentColor" d="M5 5h6v6H5zM21 5h6v6h-6zM13 13h6v6h-6zM5 21h6v6H5zM21 21h6v6h-6z"/></svg>
+                <span class="mark-rank">1</span>
+                <svg class="mark-check" viewBox="0 0 32 32"><path fill="currentColor" d="M3 15h4v4H3zM7 19h4v4H7zM11 23h4v4h-4zM15 19h4v4h-4zM19 15h4v4h-4zM23 11h4v4h-4z"/></svg>
+              </span>
+              <span class="c-name">Alex</span>
+              <span class="c-party">Reform Coalition</span>
+            </button>
+          </li>
+          <li>
+            <button class="cand" type="button" data-name="Mira" aria-label="Mira, Reform Coalition">
+              <span class="box" aria-hidden="true">
+                <svg class="mark-x" viewBox="0 0 32 32"><path fill="currentColor" d="M5 5h6v6H5zM21 5h6v6h-6zM13 13h6v6h-6zM5 21h6v6H5zM21 21h6v6h-6z"/></svg>
+                <span class="mark-rank">1</span>
+                <svg class="mark-check" viewBox="0 0 32 32"><path fill="currentColor" d="M3 15h4v4H3zM7 19h4v4H7zM11 23h4v4h-4zM15 19h4v4h-4zM19 15h4v4h-4zM23 11h4v4h-4z"/></svg>
+              </span>
+              <span class="c-name">Mira</span>
+              <span class="c-party">Reform Coalition</span>
+            </button>
+          </li>
+          <li>
+            <button class="cand" type="button" data-name="Rowan" aria-label="Rowan, Independent">
+              <span class="box" aria-hidden="true">
+                <svg class="mark-x" viewBox="0 0 32 32"><path fill="currentColor" d="M5 5h6v6H5zM21 5h6v6h-6zM13 13h6v6h-6zM5 21h6v6H5zM21 21h6v6h-6z"/></svg>
+                <span class="mark-rank">1</span>
+                <svg class="mark-check" viewBox="0 0 32 32"><path fill="currentColor" d="M3 15h4v4H3zM7 19h4v4H7zM11 23h4v4h-4zM15 19h4v4h-4zM19 15h4v4h-4zM23 11h4v4h-4z"/></svg>
+              </span>
+              <span class="c-name">Rowan</span>
+              <span class="c-party">Independent</span>
+            </button>
+          </li>
+        </ul>
+        <div class="b-actions">
+          <button class="btn btn-small btn-primary" type="button" data-cast>cast ballot</button>
+          <button class="btn btn-small" type="button" data-clear>start over</button>
+        </div>
+        <p class="b-result" role="status"><span data-result-text></span><span class="stamp stamp-counted" data-counted hidden>counted</span></p>
+        <figcaption class="b-note">the paper stand-in; the real one opens in-game with <span class="mono">/election</span></figcaption>
+      </figure>
+    </div>
+
+    <div class="container">
+      <ul class="stats" aria-label="The plugin by the numbers">
+        <li>
+          <p class="stat-fig">3</p>
+          <svg class="tally-mark" viewBox="0 0 11 16" aria-hidden="true" fill="currentColor"><rect x="0" y="1" width="2.6" height="14"/><rect x="5" y="1" width="2.6" height="14"/><rect x="10" y="1" width="2.6" height="14"/></svg>
+          <p class="stat-label">voting systems</p>
+        </li>
+        <li>
+          <p class="stat-fig">5</p>
+          <svg class="tally-mark" viewBox="-1 0 24 16" aria-hidden="true" fill="currentColor"><rect x="0" y="1" width="2.6" height="14"/><rect x="5" y="1" width="2.6" height="14"/><rect x="10" y="1" width="2.6" height="14"/><rect x="15" y="1" width="2.6" height="14"/><path d="M-1 13.5 L19 2.5" stroke="currentColor" stroke-width="2.4"/></svg>
+          <p class="stat-label">tie-breakers</p>
+        </li>
+        <li>
+          <p class="stat-fig">16</p>
+          <svg class="tally-mark" viewBox="-1 0 80 16" aria-hidden="true" fill="currentColor"><rect x="0" y="1" width="2.6" height="14"/><rect x="5" y="1" width="2.6" height="14"/><rect x="10" y="1" width="2.6" height="14"/><rect x="15" y="1" width="2.6" height="14"/><path d="M-1 13.5 L19 2.5" stroke="currentColor" stroke-width="2.4"/><rect x="26" y="1" width="2.6" height="14"/><rect x="31" y="1" width="2.6" height="14"/><rect x="36" y="1" width="2.6" height="14"/><rect x="41" y="1" width="2.6" height="14"/><path d="M25 13.5 L45 2.5" stroke="currentColor" stroke-width="2.4"/><rect x="52" y="1" width="2.6" height="14"/><rect x="57" y="1" width="2.6" height="14"/><rect x="62" y="1" width="2.6" height="14"/><rect x="67" y="1" width="2.6" height="14"/><path d="M51 13.5 L71 2.5" stroke="currentColor" stroke-width="2.4"/><rect x="78" y="1" width="2.6" height="14"/></svg>
+          <p class="stat-label">commands</p>
+        </li>
+        <li>
+          <p class="stat-fig">13</p>
+          <svg class="tally-mark" viewBox="-1 0 64 16" aria-hidden="true" fill="currentColor"><rect x="0" y="1" width="2.6" height="14"/><rect x="5" y="1" width="2.6" height="14"/><rect x="10" y="1" width="2.6" height="14"/><rect x="15" y="1" width="2.6" height="14"/><path d="M-1 13.5 L19 2.5" stroke="currentColor" stroke-width="2.4"/><rect x="26" y="1" width="2.6" height="14"/><rect x="31" y="1" width="2.6" height="14"/><rect x="36" y="1" width="2.6" height="14"/><rect x="41" y="1" width="2.6" height="14"/><path d="M25 13.5 L45 2.5" stroke="currentColor" stroke-width="2.4"/><rect x="52" y="1" width="2.6" height="14"/><rect x="57" y="1" width="2.6" height="14"/><rect x="62" y="1" width="2.6" height="14"/></svg>
+          <p class="stat-label">placeholders</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============================== story ============================== -->
+  <section class="story" id="story">
+    <div class="container">
+      <header class="sec-head reveal">
+        <h2>How it got reborn</h2>
+        <p class="sec-lede">Every fork has an origin story. This one starts with a pull request.</p>
+      </header>
+      <ol class="chapters">
+        <li class="chapter reveal">
+          <p class="ch-no">chapter one</p>
+          <h3>The find</h3>
+          <p>Deep in GitHub I found a plugin that added real elections to Minecraft servers. Towny towns could nominate candidates, campaign, and vote for their mayor. Coolest thing I had seen all week.</p>
+        </li>
+        <li class="chapter reveal">
+          <p class="ch-no">chapter two</p>
+          <h3>The pull request</h3>
+          <p>I liked it enough to contribute, so I opened a pull request and waited.</p>
+        </li>
+        <li class="chapter reveal">
+          <p class="ch-no">chapter three</p>
+          <h3>The archive</h3>
+          <p>Turns out the creator had abandoned the project long before. My PR was the poke that reminded them it existed, and they archived the repo right after.</p>
+          <figure class="note">
+            <span class="stamp stamp-archived" aria-hidden="true">archived</span>
+            <p>This repository has been archived by the owner. It is now read-only.</p>
+          </figure>
+        </li>
+        <li class="chapter reveal">
+          <p class="ch-no">chapter four</p>
+          <h3>The next day</h3>
+          <p>I came back the next day to check on my PR and found the whole thing sealed behind GitHub&rsquo;s archived banner. No merge. No reply. Just a read-only repo and my diff, still open.</p>
+        </li>
+        <li class="chapter reveal">
+          <p class="ch-no">chapter five</p>
+          <h3>The rebirth <span class="stamp stamp-reborn" aria-hidden="true">reborn</span></h3>
+          <p>So I forked it and rebuilt it myself, feature by feature, with AI as the pair programmer. That fork is <a href="https://github.com/mnagingvi/TownyElections-2">TownyElections Reborn</a>, and it is very much alive.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============================== features ============================== -->
+  <section class="features" id="features">
+    <div class="container">
+      <header class="sec-head reveal">
+        <h2>What it does</h2>
+      </header>
+      <ul class="feat-grid">
+        <li class="reveal">
+          <p class="f-no">01</p>
+          <h3>Three ways to vote</h3>
+          <p>Plurality, ranked-choice instant runoff, or approval ballots, chosen per election in config.</p>
+        </li>
+        <li class="reveal">
+          <p class="f-no">02</p>
+          <h3>Political parties</h3>
+          <p>Candidates join, create, and colour parties; standings persist between elections and colour every result.</p>
+        </li>
+        <li class="reveal">
+          <p class="f-no">03</p>
+          <h3>Election night</h3>
+          <p>A staged results show: title card, boss-bar scoreboard, candidate reveals, sounds, and party-coloured fireworks.</p>
+        </li>
+        <li class="reveal">
+          <p class="f-no">04</p>
+          <h3>The election desk</h3>
+          <p>A click-driven inventory GUI with player-head ballots, campaigns, parties, and admin tools.</p>
+        </li>
+        <li class="reveal">
+          <p class="f-no">05</p>
+          <h3>Winner takes office</h3>
+          <p>Winners get Towny ranks, optional mayorship, and your console commands; the previous holder&rsquo;s ranks can be revoked.</p>
+        </li>
+        <li class="reveal">
+          <p class="f-no">06</p>
+          <h3>Fair counts</h3>
+          <p>Five tie-breaker strategies, optional secret ballots, and per-IP vote limits against alt abuse.</p>
+        </li>
+        <li class="reveal">
+          <p class="f-no">07</p>
+          <h3>Always on schedule</h3>
+          <p>Auto-scheduled recurring elections, reminders for non-voters, and results that survive restarts in <span class="mono">data.yml</span>.</p>
+        </li>
+        <li class="reveal">
+          <p class="f-no">08</p>
+          <h3>Speaks your server</h3>
+          <p>PlaceholderAPI placeholders, bStats metrics, GitHub update checks, localised colour messages, renamable sub-commands.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============================== election night ============================== -->
+  <section class="night" id="night">
+    <div class="container">
+      <header class="sec-head night-head reveal">
+        <h2>Election night is a show</h2>
+        <p class="sec-lede">When voting closes, results unfold like a live broadcast: round-by-round counts, a boss-bar scoreboard, then fireworks in the winner&rsquo;s party colours. Replay it with <span class="mono">/election night</span>, fast-forward with <span class="mono">/election night skip</span>.</p>
+      </header>
+
+      <div class="board" data-board>
+        <p class="sr-only" role="status" data-board-live></p>
+        <div class="boss" aria-hidden="true"><div class="boss-fill" data-boss></div></div>
+        <header class="board-head">
+          <p class="board-title">Election night</p>
+          <p class="board-sub">Oakvale, ranked choice, 9 ballots</p>
+        </header>
+
+        <div class="rounds">
+          <div class="round is-in" data-round="1">
+            <p class="round-label">round 1</p>
+            <ul class="tallies">
+              <li class="tally is-in" data-cand="rowan">
+                <p class="t-name">Rowan</p>
+                <p class="t-party">Independent</p>
+                <p class="t-bar"><span class="t-fill" style="--v:0.222"></span><span class="t-count">2</span></p>
+              </li>
+              <li class="tally is-in" data-cand="mira">
+                <p class="t-name">Mira</p>
+                <p class="t-party">Reform Coalition</p>
+                <p class="t-bar"><span class="t-fill" style="--v:0.333"></span><span class="t-count">3</span></p>
+              </li>
+              <li class="tally is-in" data-cand="alex">
+                <p class="t-name">Alex</p>
+                <p class="t-party">Reform Coalition</p>
+                <p class="t-bar"><span class="t-fill" style="--v:0.444"></span><span class="t-count">4</span></p>
+              </li>
+            </ul>
+            <p class="round-note">Rowan eliminated, ballots transfer to next preference</p>
+          </div>
+
+          <div class="round is-in" data-round="2">
+            <p class="round-label">round 2</p>
+            <ul class="tallies">
+              <li class="tally is-in is-elim" data-cand="rowan2">
+                <p class="t-name">Rowan</p>
+                <p class="t-party">Independent</p>
+                <p class="t-bar"><span class="t-fill" style="--v:0"></span><span class="t-count">0</span></p>
+              </li>
+              <li class="tally is-in" data-cand="mira2">
+                <p class="t-name">Mira</p>
+                <p class="t-party">Reform Coalition</p>
+                <p class="t-bar"><span class="t-fill" style="--v:0.556"></span><span class="t-count">5</span></p>
+              </li>
+              <li class="tally is-in" data-cand="alex2">
+                <p class="t-name">Alex</p>
+                <p class="t-party">Reform Coalition</p>
+                <p class="t-bar"><span class="t-fill" style="--v:0.444"></span><span class="t-count">4</span></p>
+              </li>
+            </ul>
+            <p class="round-note">Rowan was eliminated in round 1; Mira reaches 5 of 9 and wins</p>
+          </div>
+        </div>
+
+        <div class="winner is-in" data-winner>
+          <div class="fw" aria-hidden="true">
+            <span class="burst" style="--x: 13%; --y: 54%"><b class="core"></b><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+            <span class="burst" style="--x: 86%; --y: 42%"><b class="core"></b><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+            <span class="burst" style="--x: 58%; --y: 80%"><b class="core"></b><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+          </div>
+          <svg class="crown" viewBox="0 0 12 8" aria-hidden="true"><path fill="currentColor" d="M1 0h2v2H1zM5 0h2v4H5zM9 0h2v2H9zM1 2h2v2H1zM9 2h2v2H9zM1 4h10v2H1zM1 6h10v2H1z"/></svg>
+          <p class="win-name">Mira</p>
+          <p class="win-sub">mayor-elect of Oakvale, Reform Coalition, 5 of 9 ballots</p>
+        </div>
+
+        <div class="board-actions">
+          <button class="btn btn-night btn-primary-night" type="button" data-night-run>run the show</button>
+          <button class="btn btn-night" type="button" data-night-skip>skip</button>
+          <button class="btn btn-night" type="button" data-night-replay hidden>replay</button>
+        </div>
+        <p class="board-note">the demo replays the worked example from the readme, nine ballots and one runoff</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== commands ============================== -->
+  <section class="commands" id="commands">
+    <div class="container">
+      <header class="sec-head reveal">
+        <h2>The commands</h2>
+        <p class="sec-lede">Every sub-command is renamable in config. Click a row to copy it.</p>
+      </header>
+
+      <p class="table-cap">root command <span class="mono">/election</span>, aliases <span class="mono">/elec</span> and <span class="mono">/te</span></p>
+      <div class="tablewrap">
+        <table>
+          <thead>
+            <tr><th scope="col">command</th><th scope="col">who</th><th scope="col">what it does</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row"><button class="cmd" type="button" data-copy="/election">/election</button></th><td>residents</td><td>open the election desk GUI</td></tr>
+            <tr><th scope="row"><button class="cmd" type="button" data-copy="/election run">/election run</button></th><td>candidates</td><td>stand as a candidate</td></tr>
+            <tr><th scope="row"><button class="cmd" type="button" data-copy="/election withdraw">/election withdraw</button></th><td>candidates</td><td>withdraw from the race</td></tr>
+            <tr><th scope="row"><button class="cmd" type="button" data-copy="/election campaign &lt;message&gt;">/election campaign &lt;message&gt;</button></th><td>candidates</td><td>set your campaign message</td></tr>
+            <tr><th scope="row"><button class="cmd" type="button" data-copy="/election party &lt;name&gt;">/election party &lt;name&gt;</button></th><td>candidates</td><td>join or create a political party</td></tr>
+            <tr><th scope="row"><button class="cmd" type="button" data-copy="/election parties">/election parties</button></th><td>residents</td><td>list current parties and standings</td></tr>
+            <tr><th scope="row"><button class="cmd" type="button" data-copy="/election vote &lt;candidate...&gt;">/election vote &lt;candidate...&gt;</button></th><td>residents</td><td>cast or change your vote or ballot</td></tr>
+            <tr><th scope="row"><button class="cmd" type="button" data-copy="/election status">/election status</button></th><td>residents</td><td>view the current election</td></tr>
+            <tr><th scope="row"><button class="cmd" type="button" data-copy="/election candidates">/election candidates</button></th><td>residents</td><td>list candidates, parties, campaigns</td></tr>
+            <tr><th scope="row"><button class="cmd" type="button" data-copy="/election results">/election results</button></th><td>residents</td><td>view the last concluded results</td></tr>
+            <tr><th scope="row"><button class="cmd" type="button" data-copy="/election night">/election night</button></th><td>residents</td><td>replay the last result as a show</td></tr>
+            <tr><th scope="row"><button class="cmd" type="button" data-copy="/election night skip [town]">/election night skip [town]</button></th><td><span class="tag">admin</span></td><td>fast-forward a running show</td></tr>
+            <tr><th scope="row"><button class="cmd" type="button" data-copy="/election start [town]">/election start [town]</button></th><td><span class="tag">admin</span></td><td>start an election</td></tr>
+            <tr><th scope="row"><button class="cmd" type="button" data-copy="/election stop [town]">/election stop [town]</button></th><td><span class="tag">admin</span></td><td>end voting early and tally</td></tr>
+            <tr><th scope="row"><button class="cmd" type="button" data-copy="/election cancel [town]">/election cancel [town]</button></th><td><span class="tag">admin</span></td><td>cancel with no winner</td></tr>
+            <tr><th scope="row"><button class="cmd" type="button" data-copy="/election reload">/election reload</button></th><td><span class="tag">admin</span></td><td>reload configuration</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="table-cap">permissions, defaults straight from the plugin</p>
+      <div class="tablewrap">
+        <table>
+          <thead>
+            <tr><th scope="col">node</th><th scope="col">default</th><th scope="col">grants</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row" class="mono-cell"><button class="cmd" type="button" data-copy="townyelections.candidate">townyelections.candidate</button></th><td>everyone</td><td>running and managing a campaign</td></tr>
+            <tr><th scope="row" class="mono-cell"><button class="cmd" type="button" data-copy="townyelections.vote">townyelections.vote</button></th><td>everyone</td><td>voting</td></tr>
+            <tr><th scope="row" class="mono-cell"><button class="cmd" type="button" data-copy="townyelections.info">townyelections.info</button></th><td>everyone</td><td>viewing status, candidates, results</td></tr>
+            <tr><th scope="row" class="mono-cell"><button class="cmd" type="button" data-copy="townyelections.admin">townyelections.admin</button></th><td>op</td><td>start, stop, cancel, reload</td></tr>
+            <tr><th scope="row" class="mono-cell"><button class="cmd" type="button" data-copy="townyelections.*">townyelections.*</button></th><td>op</td><td>everything</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== setup ============================== -->
+  <section class="setup" id="setup">
+    <div class="container">
+      <header class="sec-head reveal">
+        <h2>Get it running</h2>
+      </header>
+
+      <div class="setup-grid">
+        <div class="steps-col reveal">
+          <ol class="steps">
+            <li><span class="step-no">1</span><p>Download the jar from <a href="https://github.com/mnagingvi/TownyElections-2/releases">GitHub Releases</a>.</p></li>
+            <li><span class="step-no">2</span><p>Drop it in your server&rsquo;s <span class="mono">plugins/</span> folder.</p></li>
+            <li><span class="step-no">3</span><p>Make sure <a href="https://github.com/TownyAdvanced/Towny">Towny</a> is installed.</p></li>
+            <li><span class="step-no">4</span><p>Restart, then edit <span class="mono">plugins/TownyElections/config.yml</span>.</p></li>
+            <li><span class="step-no">5</span><p>Run <button class="cmd" type="button" data-copy="/election reload">/election reload</button> after any change.</p></li>
+          </ol>
+          <a class="btn btn-primary" href="https://github.com/mnagingvi/TownyElections-2/releases">Download from releases</a>
+        </div>
+
+        <div class="req-col reveal">
+          <p class="table-cap">requirements</p>
+          <div class="tablewrap">
+            <table>
+              <thead>
+                <tr><th scope="col">dependency</th><th scope="col">version</th><th scope="col">required</th></tr>
+              </thead>
+              <tbody>
+                <tr><th scope="row">Paper</th><td class="mono">1.21.4 or newer</td><td>yes</td></tr>
+                <tr><th scope="row">Java</th><td class="mono">21+</td><td>yes</td></tr>
+                <tr><th scope="row">Towny</th><td class="mono">0.100.0.0+, 0.103 recommended</td><td>yes</td></tr>
+                <tr><th scope="row">PlaceholderAPI</th><td class="mono">any recent</td><td>optional</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p class="table-cap">build from source</p>
+          <div class="snip">
+            <code>mvn clean package</code>
+            <button class="copy-snip" type="button" data-copy="mvn clean package" aria-label="copy build command">copy</button>
+          </div>
+          <p class="snip-note">the shaded jar lands in <span class="mono">target/</span>; the same command runs the tests, including the instant-runoff counter</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <div class="container foot-grid">
+    <div class="foot-brand">
+      <a class="wordmark wordmark-foot" href="#top">
+        <img class="mark" src="logo.svg" alt="" width="42" height="42">
+        <span class="word">TownyElections</span>
+        <span class="stamp stamp-word" aria-hidden="true">reborn</span>
+      </a>
+      <p class="foot-blurb">An election system for Towny towns, rebuilt from an archived repo and maintained with a little help from AI.</p>
+    </div>
+    <nav class="foot-links" aria-label="Project links">
+      <p class="foot-cap">project</p>
+      <a href="https://github.com/mnagingvi/TownyElections-2">GitHub repo</a>
+      <a href="https://github.com/mnagingvi/TownyElections-2/releases">Releases</a>
+      <a href="https://github.com/mnagingvi/TownyElections-2/issues">Issue tracker</a>
+      <a href="https://github.com/mnagingvi/TownyElections-2/blob/main/CHANGELOG.md">Changelog</a>
+      <p class="foot-cap">around it</p>
+      <a href="https://github.com/mnagingvi/TownyElections-2/blob/main/CONTRIBUTING.md">Contributing</a>
+      <a href="https://github.com/mnagingvi/TownyElections-2/blob/main/SECURITY.md">Security policy</a>
+      <a href="https://github.com/vingaming1113/TownyElections">The original repo</a>
+      <a href="https://github.com/TownyAdvanced/Towny">Towny</a>
+    </nav>
+  </div>
+  <div class="container foot-legal">
+    <p>An independent fork of vingaming1113/TownyElections, MIT licensed.</p>
+    <p>Not an official Minecraft product. Not associated with Mojang or Microsoft.</p>
+  </div>
+</footer>
+
+<script src="script.js" defer></script>
+</body>
+</html>
